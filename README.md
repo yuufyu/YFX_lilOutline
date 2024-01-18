@@ -13,7 +13,6 @@ To leverage this feature, ensure that the lilToon shader's 'Outline > Vertex Col
 
 This Blender add-on aims to bring functionality similar to [lilOutlineUtil](https://github.com/lilxyzw/lilOutlineUtil) in Unity to Blender.  
 
-
 ## Installation
 
 1. Download the add-on ZIP file from the [Code > Download ZIP](https://github.com/yuufyu/YFX-lilOutline/archive/refs/heads/main.zip) page.
@@ -25,6 +24,11 @@ This Blender add-on aims to bring functionality similar to [lilOutlineUtil](http
 ## Usage
 1. Select the object(s) you want to apply the outline smoothing to.
 2. Go to `View3D > Object > Smooth Outlines` in the Blender menu.
+
+## Known Issues
+- If custom normals are altered by modifiers (e.g., Data Transfer modifier), the add-on may not function as intended.  
+Applying modifiers can avoid this issue.
+
 
 ## License
 This add-on is licensed under the GNU General Public License (GPL) version 3. For details, see the [LICENSE](LICENSE) file.
