@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 import bpy
 import mathutils
 
@@ -13,7 +15,9 @@ def get_vertex_normals(mesh: bpy.types.Mesh) -> list:
     return normals
 
 
-def bake_normal_average(obj: bpy.types.Object) -> None:
+def bake_normal_average(obj: bpy.types.Object, shrink_tip_strength: float) -> None:
+    eps = 0.000001
+
     mesh = obj.data
     mesh.calc_tangents()
 
@@ -34,11 +38,20 @@ def bake_normal_average(obj: bpy.types.Object) -> None:
             normal = vertex.normal
             normal_average = normals[vertex.vertex_index]
 
+            width = 1.0
+
+            if shrink_tip_strength > eps:
+                dot_product = max(
+                    0.0,
+                    min(1.0, mathutils.Vector.dot(normal, normal_average)),
+                )
+                width *= dot_product**shrink_tip_strength
+
             vcol_layer.data[loop_index].color = (
                 mathutils.Vector.dot(normal_average, tangent) * 0.5 + 0.5,
                 mathutils.Vector.dot(normal_average, bitangent) * 0.5 + 0.5,
                 mathutils.Vector.dot(normal_average, normal) * 0.5 + 0.5,
-                1.0,
+                width,
             )
 
 
@@ -46,6 +59,14 @@ class YFX_LILOUTLINE_OT_smooth_outlines(bpy.types.Operator):
     bl_idname = "yfx_liloutline.smooth_outlines"
     bl_label = "Smooth Outlines"
     bl_description = "Smooth the outline direction by baking in vertex colors"
+    bl_options: ClassVar[set] = {"REGISTER", "UNDO"}
+
+    shrink_tip_strength: bpy.props.FloatProperty(
+        name="Shrink Tip Strength",
+        description="The strength of converging the tip portion of the outline",
+        default=0.0,
+        min=0.0,
+    )
 
     @classmethod
     def poll(cls, context: bpy.types.Context) -> bool:
@@ -58,5 +79,5 @@ class YFX_LILOUTLINE_OT_smooth_outlines(bpy.types.Operator):
     def execute(self, context: bpy.types.Context) -> set:
         for obj in bpy.context.selected_objects:
             if obj.type == "MESH":
-                bake_normal_average(obj)
+                bake_normal_average(obj, self.shrink_tip_strength)
         return {"FINISHED"}
