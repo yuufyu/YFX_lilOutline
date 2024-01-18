@@ -30,7 +30,7 @@ This Blender add-on aims to bring functionality similar to 'lilOutlineUtil'(http
     "blender": (4, 0, 2),
     "version": (0, 0, 1),
     "category": "Object",
-    "location": "Object > Bake Outline",
+    "location": "View3D > Object > Smooth Outlines",
 }
 
 
