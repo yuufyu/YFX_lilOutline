@@ -5,13 +5,13 @@
 
 ## Overview
 
-This Blender add-on enhances the appearance of outlines rendered using the 'lilToon'(https://github.com/lilxyzw/lilToon) shader by providing a smoother look.  
+This Blender add-on enhances the appearance of outlines rendered using the [lilToon](https://github.com/lilxyzw/lilToon) shader by providing a smoother look.  
 It achieves this by writing the direction of the outline into the vertex colors of the mesh.  
 
 The lilToon shader utilizes the information stored in the vertex colors to control the direction of the outline.  
 To leverage this feature, ensure that the lilToon shader's 'Outline > Vertex Color' setting is configured to 'RGBA -> Normal & Width'.  
 
-This Blender add-on aims to bring functionality similar to 'lilOutlineUtil'(https://github.com/lilxyzw/lilOutlineUtil) in Unity to Blender.  
+This Blender add-on aims to bring functionality similar to [lilOutlineUtil](https://github.com/lilxyzw/lilOutlineUtil) in Unity to Blender.  
 
 
 ## Installation
