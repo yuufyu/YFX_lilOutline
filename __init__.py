@@ -17,7 +17,7 @@
 
 import bpy
 
-from .outline import YFX_LILOUTLINE_OT_bake_outline  # Import the operator module
+from .outline import YFX_LILOUTLINE_OT_smooth_outlines  # Import the operator module
 
 bl_info = {
     "name": "YFX lilOutline",
@@ -35,11 +35,11 @@ This Blender add-on aims to bring functionality similar to 'lilOutlineUtil'(http
 
 
 def menu_func(self: bpy.types.AnyType, context: bpy.types.Context) -> None:
-    self.layout.operator(YFX_LILOUTLINE_OT_bake_outline.bl_idname)
+    self.layout.operator(YFX_LILOUTLINE_OT_smooth_outlines.bl_idname)
 
 
 classes = [
-    YFX_LILOUTLINE_OT_bake_outline,
+    YFX_LILOUTLINE_OT_smooth_outlines,
 ]
 
 

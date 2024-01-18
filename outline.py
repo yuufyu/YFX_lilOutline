@@ -31,9 +31,9 @@ def bake_normal_average(obj: bpy.types.Object) -> None:
             )
 
 
-class YFX_LILOUTLINE_OT_bake_outline(bpy.types.Operator):
-    bl_idname = "yfx_liloutline.bake_outline"
-    bl_label = "Bake Outline"
+class YFX_LILOUTLINE_OT_smooth_outlines(bpy.types.Operator):
+    bl_idname = "yfx_liloutline.smooth_outlines"
+    bl_label = "Smooth Outlines"
     bl_description = "Smooth the outline direction by baking in vertex colors"
 
     @classmethod
