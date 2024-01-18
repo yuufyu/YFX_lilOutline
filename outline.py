@@ -2,8 +2,6 @@ import bpy
 import mathutils
 
 
-# Bake
-############################################################
 def bake_normal_average(obj: bpy.types.Object) -> None:
     mesh = obj.data
     mesh.calc_tangents()
@@ -33,6 +31,21 @@ def bake_normal_average(obj: bpy.types.Object) -> None:
             )
 
 
-for obj in bpy.context.selected_objects:
-    if obj.type == "MESH":
-        bake_normal_average(obj)
+class YFX_LILOUTLINE_OT_bake_outline(bpy.types.Operator):
+    bl_idname = "yfx_liloutline.bake_outline"
+    bl_label = "Bake Outline"
+    bl_description = "Smooth the outline direction by baking in vertex colors"
+
+    @classmethod
+    def poll(cls, context: bpy.types.Context) -> bool:
+        return (
+            context.mode == "OBJECT"
+            and context.active_object
+            and context.active_object.type == "MESH"
+        )
+
+    def execute(self, context: bpy.types.Context) -> set:
+        for obj in bpy.context.selected_objects:
+            if obj.type == "MESH":
+                bake_normal_average(obj)
+        return {"FINISHED"}
