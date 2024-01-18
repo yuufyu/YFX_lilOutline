@@ -17,7 +17,7 @@
 
 import bpy
 
-from outline import YFX_LILOUTLINE_OT_bake_outline  # Import the operator module
+from .outline import YFX_LILOUTLINE_OT_bake_outline  # Import the operator module
 
 bl_info = {
     "name": "YFX lilOutline",
