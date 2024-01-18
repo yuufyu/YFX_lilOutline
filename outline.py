@@ -2,12 +2,23 @@ import bpy
 import mathutils
 
 
+def get_vertex_normals(mesh: bpy.types.Mesh) -> list:
+    normals = [v.normal for v in mesh.vertices]
+    if mesh.has_custom_normals:
+        for poly in mesh.polygons:
+            for loop_index in poly.loop_indices:
+                mesh_loop = mesh.loops[loop_index]
+                normals[mesh_loop.vertex_index] = mesh_loop.normal
+
+    return normals
+
+
 def bake_normal_average(obj: bpy.types.Object) -> None:
     mesh = obj.data
     mesh.calc_tangents()
 
     # Get Vertex Normals
-    normals = [i.normal for i in mesh.vertices]
+    normals = get_vertex_normals(mesh)
 
     # Setup VertexColors
     if mesh.vertex_colors:
