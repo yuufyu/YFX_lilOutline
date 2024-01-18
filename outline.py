@@ -38,14 +38,15 @@ def bake_normal_average(obj: bpy.types.Object, shrink_tip_strength: float) -> No
             normal = vertex.normal
             normal_average = normals[vertex.vertex_index]
 
-            width = 1.0
-
             if shrink_tip_strength > eps:
                 dot_product = max(
                     0.0,
                     min(1.0, mathutils.Vector.dot(normal, normal_average)),
                 )
-                width *= dot_product**shrink_tip_strength
+                width = dot_product**shrink_tip_strength
+            else:
+                # To avoid overwriting the existing vertex color alpha value
+                width = vcol_layer.data[loop_index].color[3]
 
             vcol_layer.data[loop_index].color = (
                 mathutils.Vector.dot(normal_average, tangent) * 0.5 + 0.5,
