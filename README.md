@@ -1,3 +1,4 @@
+![YFX lilOutline](https://i.gyazo.com/7b520e82347938719e528b203ec79ebd.png)
 # YFX lilOutline
 
 [![GitHub license](https://img.shields.io/github/license/yuufyu/YFX-lilOutline)](https://github.com/yuufyu/YFX-lilOutline/blob/main/LICENSE)
@@ -9,7 +10,7 @@ This Blender add-on enhances the appearance of outlines rendered using the [lilT
 It achieves this by writing the direction of the outline into the vertex colors of the mesh.  
 
 The lilToon shader utilizes the information stored in the vertex colors to control the direction of the outline.  
-To leverage this feature, ensure that the lilToon shader's 'Outline > Vertex Color' setting is configured to 'RGBA -> Normal & Width'.  
+To leverage this feature, ensure that the lilToon shader's `Outline > Vertex Color` setting is configured to `RGBA -> Normal & Width`.  
 
 This Blender add-on aims to bring functionality similar to [lilOutlineUtil](https://github.com/lilxyzw/lilOutlineUtil) in Unity to Blender.  
 
